@@ -1,0 +1,71 @@
+---
+title: Analyzing the Prediction of 2019 Canadian Federal Election from CES Data -"Difference
+  of the outcome compare to real life election?"
+author: "Ziqin Zhou"
+date: "2020/12/19"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## R Markdown
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Abstract
+This article is aimed to comparing the difference of 2019 Canadian Federal election from the obtained the CES dataset and real life cases. We establish a justified multivalue logistic regression model to analyze the repedicted outcome from 2019 CES data and construct a post-stratification to show estimated results as we consider the representative of population as a whole. Furthermore, we discuss such model and data to see the limitations of the analysis and how statistical significance such result can provide for the futher recearch.
+
+## Introduction:
+Canada, as one of the democratic countries around the world, had been applied voting and elections in the practice of political actions. The 2019 Federal election of Canada (election for members of the House of Commons to the 43rd Canadian Parliament) was held on October 21, 2019 , with Justin Trudeau returned to the Prime Minister’s Office, the Liberal Party won 157 seats while Conservative and Bloc Québécois each won 121 and 32 seats.(Wikipedia,2019)
+
+Since studying has suggested that the voters’ engagement in the democratic process would be impacted by data collection or Canadian democracy(Bannerman,2020), I want to know more about how people’s intention of voting for their party in favor would effected by their demographic data such as education level or age in surveys and how such result be different than the real-life voting. we will utilize the survey conducted in 2019, Canadian Election Survey(CES). By fitting variables derived from the survey and building a reasonable MRP model, I will find out which factors influence the outcome of voting the most within the given factor range, and using post-stratification to see the how confidence we are from the result and therefore find an answer of why such result maybe different than real-life federal election of 2019.
+
+I am interested in predicting the popular vote outcome of 2019 Canadian elections. The Methodology section will describe each categorical variables of the CES data which used from the official 2019 Canadian Election Study and build the the Multilevel logistic regression model with random effect on the individual level survey data to correct the bias and post-stratification to adjust the weighted of the non-representative populations from census data. Then the result section will express the outcomes and the confidence of our result from analysis. In the discussion section we will summarize the model and explain all the results we obtained from the analysis, and show the limitations and what we expected in futher researches in the sections of Weakness and Next-Step.
+
+## Methodology
+(cleaning process failed)
+```{r,echo=F,message=F}
+library(tidyverse)
+library(lme4)
+library(pROC)
+library(arm)
+library(reshape2)
+library(ggpubr)
+#load the cleaned survey data
+#load the cleaned census data
+```
+
+we will build random coefficient logistic regression models in R to estimate the 2019 Canadian election results by CES data. We will explain the characteristic of each variables and indicates the intercepts and coefficient from the categorical variable: $$P(Y_{i}={Liberal}) =logit^{-1}(\beta_{0} + X^{1}_{0[ij]} +\beta^{2}_{ij}+\beta^{3}_{ij}+\beta^{4}_{ij} + \beta^{5}_{ij} + \epsilon_{ij})$$
+
+We would use ROC curve to check the the diagnostic ability and show the discrimination of our data by computing the AUC value.
+
+
+## Post-stratification
+We perform the post-stratification process in order to adjust the sampling weights and to estimate the proportion of voters which voted for liberal and conservative. 
+
+## Result
+
+## Discussion
+The survey data and the census data are collected from 2019 Canadian Election Study - Online Survey(Stephenson,2020) and 2016 Census income table by sex(Statistic Canada,2017).
+
+## Weakness and Limitations
+There were difference in Survey and Census data, and Census data were not representative enough for the population.
+
+## Next step
+
+
+## Reference:
+Dataset:
+Online survey data: Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, "2019 Canadian Election Study - Online Survey", Harvard Dataverse, 2020, V1. https://doi.org/10.7910/DVN/DUS88V
+
+Census data: Statistic Canada.  "Median total income, after-tax income and employment income for income recipients by sex",Income Highlight Tables, Statistic Canada, Sept.3, 2017.  https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/hlt-fst/inc-rev/index-eng.cfm, 
+
+Work Cited:
+1. CBC News., Canada Votes 2019. https://newsinteractives.cbc.ca/elections/federal/2019/results/
+2. Wikipedia, 2019 Canadian Federal election. https://en.wikipedia.org/wiki/2019_Canadian_federal_
+election
+3. Bannerman , Sara, et al. “How Political Party Data Collection May Turn off Voters.” The Conversation,
+The Conversation Media Group, 23 Jan. 2020, https://theconversation.com/how-political-party-datacollection-
+may-turn-off-voters-130336
